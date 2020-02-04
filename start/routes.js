@@ -50,4 +50,7 @@ Route.group(() => {
         ]
       ]
     ))
+
+  Route.resource('products', 'ProductController')
+    .apiOnly()
 }).middleware('auth')

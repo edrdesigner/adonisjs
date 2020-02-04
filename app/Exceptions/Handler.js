@@ -3,6 +3,8 @@
 const Env = use('Env')
 const Youch = use('Youch')
 const BaseExceptionHandler = use('BaseExceptionHandler')
+const Config = use('Config')
+const Sentry = require('@sentry/node')
 
 /**
  * This class handles all exceptions thrown during
@@ -47,7 +49,10 @@ class ExceptionHandler extends BaseExceptionHandler {
    * @return {void}
    */
   async report (error, { request }) {
-    console.log(error)
+    if (error.name !== 'ValidationException') {
+      Sentry.init({ dsn: Config.get('services.sentry.dsn') })
+      Sentry.captureException(error)
+    }
   }
 }
 

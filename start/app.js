@@ -19,7 +19,9 @@ const providers = [
   '@adonisjs/mail/providers/MailProvider',
   '@adonisjs/framework/providers/ViewProvider', // add view to api
   '@adonisjs/validator/providers/ValidatorProvider', // add validations
-  '@adonisjs/antl/providers/AntlProvider'
+  '@adonisjs/antl/providers/AntlProvider',
+  '@adonisjs/redis/providers/RedisProvider',
+  'adonis-kue/providers/KueProvider'
 ]
 
 /*
@@ -32,7 +34,8 @@ const providers = [
 |
 */
 const aceProviders = [
-  '@adonisjs/lucid/providers/MigrationsProvider'
+  '@adonisjs/lucid/providers/MigrationsProvider',
+  'adonis-kue/providers/CommandsProvider'
 ]
 
 /*
@@ -59,4 +62,16 @@ const aliases = {}
 */
 const commands = []
 
-module.exports = { providers, aceProviders, aliases, commands }
+/*
+|--------------------------------------------------------------------------
+| Jobs
+|--------------------------------------------------------------------------
+|
+| Here you store your kue jobs
+|
+*/
+const jobs = [
+  'App/Jobs/NewTaskMail'
+]
+
+module.exports = { providers, aceProviders, aliases, commands, jobs }

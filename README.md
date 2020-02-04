@@ -52,3 +52,11 @@ adonis make:validator User
 ### Criando um Exception handler ehandler
 
 adonis make:ehandler
+
+
+### Criando um job com o kue
+adonis make:job NewTaskMail
+
+
+### Escutando adonis kue
+adonis kue:listen
